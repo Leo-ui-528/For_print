@@ -16,7 +16,7 @@ class UploadView(CreateView):
 
 
 def will_be(request):
-    will = Upload.objects.all()
+    will = Upload.objects.order_by('upload_date')
     return render(request, 'demand/will_be.html', {'will': will})
 
 

@@ -26,7 +26,7 @@ class Upload(models.Model):
     type_paper = models.CharField(max_length=64, verbose_name='Тип бумаги', null=True, choices=TYPE, blank=True)
     print_format = models.CharField(max_length=64, verbose_name='Формат печати', null=True, choices=FORMAT, default='A3')
     folding = models.CharField(max_length=64, verbose_name='Фальцевание', null=True, choices=FOLDING, blank=True)
-    number_of_instances = models.IntegerField(max_length=4, verbose_name='Кол-во экземпляров', null=True)
+    number_of_instances = models.IntegerField(verbose_name='Кол-во экземпляров', null=True)
     phone = models.IntegerField(verbose_name='Телефон', null=True)
     bool = models.BooleanField(null=True, verbose_name='Да/Нет')
 
