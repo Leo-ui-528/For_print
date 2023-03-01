@@ -16,7 +16,8 @@ class UploadView(CreateView):
 
 
 def will_be(request):
-    return render(request, 'demand/will_be.html')
+    will = Upload.objects.all()
+    return render(request, 'demand/will_be.html', {'will': will})
 
 
 def ended(request):

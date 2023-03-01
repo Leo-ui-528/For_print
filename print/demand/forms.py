@@ -1,4 +1,4 @@
-from django import forms
+from django.forms import forms
 from models import Upload
 
 

@@ -28,7 +28,20 @@
         </div>
     </div>
     <div id="content_header"></div>
-    <div id="site_content">
+    <div style="padding:40px;margin:40px;border:1px solid #ccc">
+    <ul>
+    {% for document in will %}
+        <li>
+            <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
+            <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}
+                <br> Тип бумаги: {{ document.type_paper}}<br> Формат печати: {{document.print_format}}<br> Фальцевание:
+            {{document.folding}}<br> Количество копий: {{document.number_of_instances}}<br> Телефон: {{document.phone}}<br> Готово: {{ document.bool }}</small>
+        </li>
+    {% endfor %}
+    </ul>
+    </div>
+
+
 
 
     </div>

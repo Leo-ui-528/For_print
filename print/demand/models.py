@@ -30,4 +30,9 @@ class Upload(models.Model):
     phone = models.IntegerField(verbose_name='Телефон', null=True)
     bool = models.BooleanField(null=True, verbose_name='Да/Нет')
 
+    def __str__(self):
+        return self.type_paper
+
+
+
 
