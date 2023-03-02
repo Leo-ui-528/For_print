@@ -29,24 +29,27 @@
     </div>
     <div id="content_header"></div>
     <div style="padding:40px;margin:40px;border:1px solid #ccc">
-    <ul>
-    {% for document in will %}
-        <li>
 
-            №: {{ document.id }} <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
-            <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}
-                 Тип бумаги: {{ document.type_paper}} Формат печати: {{document.print_format}} Фальцевание:
-            {{document.folding}} Количество копий: {{document.number_of_instances}} Телефон: {{document.phone}} Готово: {{ document.bool }} <button type="submit">Напечатано</button> </small>
+        <ul>
+            {% for document in will %}
+            <li>
 
-        </li>
-    {% endfor %}
-    </ul>
+                №: {{ document.id }} <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
+                <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}
+                    Тип бумаги: {{ document.type_paper}} Формат печати: {{document.print_format}} Фальцевание:
+                    {{document.folding}} Количество копий: {{document.number_of_instances}} Телефон: {{document.phone}}
+                    Готово: {{ document.bool }} </small>
+
+
+
+
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 
 
-
-
-    </div>
+</div>
 </div>
 </body>
 </html>

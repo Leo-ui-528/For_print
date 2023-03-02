@@ -1,5 +1,6 @@
-from django.forms import forms
+from django import forms
 from models import Upload
+from django.forms import ModelForm
 
 
 class DocumentForm(forms.Form):
@@ -9,3 +10,5 @@ class DocumentForm(forms.Form):
 )
 
 
+class Bool(forms.Form):
+    bool = forms.BooleanField(initial=True)

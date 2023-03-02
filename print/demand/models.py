@@ -28,7 +28,7 @@ class Upload(models.Model):
     folding = models.CharField(max_length=64, verbose_name='Фальцевание', null=True, choices=FOLDING, blank=True)
     number_of_instances = models.PositiveSmallIntegerField(default=1, verbose_name='Кол-во экземпляров', null=True)
     phone = models.IntegerField(verbose_name='Телефон', null=True)
-    bool = models.BooleanField(default=False, verbose_name='Да/Нет')
+    bool = models.BooleanField(default=None, verbose_name='Да/Нет', null=True)
 
     def __str__(self):
         return self.type_paper
