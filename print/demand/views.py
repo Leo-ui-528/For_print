@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from demand.models import Upload
+from django.http import JsonResponse
 
 
 class UploadView(CreateView):
@@ -21,4 +22,8 @@ def will_be(request):
 
 
 def ended(request):
-    return render(request, 'demand/ended.html')
+    end = Upload.objects.filter(bool=True)
+    return render(request, 'demand/ended.html', {'end': end})
+
+
+

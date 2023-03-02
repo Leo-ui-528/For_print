@@ -1697,3 +1697,11 @@ td:first-child {
 .related-products a:hover .text{
 	display: block;
 }
+.number_of_instances{
+    font-weight: 30px;
+}
+.forms{
+    padding:40px;
+    margin:40px;
+    border:1px solid #cc
+}
