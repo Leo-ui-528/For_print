@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.template.defaulttags import url
 from django.urls import path
-from demand import views as demand
+from demand.views import will_be, ended, update
 from django.conf import settings
 from django.conf.urls.static import static
 from authapp import views as authapp
@@ -25,13 +25,13 @@ from demand.views import UploadView
 app_name = 'authapp'
 
 urlpatterns = [
-    path('will_be/', demand.will_be, name='will_be'),
-    path('ended/', demand.ended, name='ended'),
+    path('will_be/', will_be, name='will_be'),
+    path('ended/', ended, name='ended'),
     path('admin/', admin.site.urls),
     path('fileupload/', UploadView.as_view(), name='fileupload'),
     path('', authapp.login, name='login'),
     path('logout/', authapp.logout, name='logout'),
     path('edit/', authapp.edit, name='edit'),
+    path('update/', update, name='update')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

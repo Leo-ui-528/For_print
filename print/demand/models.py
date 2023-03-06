@@ -20,6 +20,10 @@ class Upload(models.Model):
         ('A3', 'А3'),
         ('A4', 'А4')
     ]
+    STATUS = [
+        ('No', 'No'),
+        ('Yes', 'Yes')
+    ]
 
     upload_file = models.FileField(verbose_name='Перетащите файл')
     upload_date = models.DateTimeField(auto_now_add=True)
@@ -28,7 +32,7 @@ class Upload(models.Model):
     folding = models.CharField(max_length=64, verbose_name='Фальцевание', null=True, choices=FOLDING, blank=True)
     number_of_instances = models.PositiveSmallIntegerField(default=1, verbose_name='Кол-во экземпляров', null=True)
     phone = models.IntegerField(verbose_name='Телефон', null=True)
-    bool = models.BooleanField(default=None, verbose_name='Да/Нет', null=True)
+    bool = models.BooleanField(default=False, verbose_name='Да/Нет', null=True)
 
     def __str__(self):
         return self.type_paper

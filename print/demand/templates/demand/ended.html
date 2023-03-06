@@ -38,7 +38,7 @@
             №: {{ document.id }} <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
             <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}
                  Тип бумаги: {{ document.type_paper}} Формат печати: {{document.print_format}} Фальцевание:
-            {{document.folding}} Количество копий: {{document.number_of_instances}} Телефон: {{document.phone}} Готово: {{ document.bool }}  </small>
+            {{document.folding}} Количество копий: {{document.number_of_instances}} Телефон: {{document.phone}}  </small>
         </li>
 
     {% endfor %}

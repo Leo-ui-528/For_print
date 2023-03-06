@@ -3,12 +3,9 @@ from models import Upload
 from django.forms import ModelForm
 
 
-class DocumentForm(forms.Form):
+class DocumentForm(forms.ModelForm):
     docfile = forms.FileField(
         label='Select a file',
-        help_text='max. 42 megabytes'
-)
+        help_text='max. 42 megabytes')
 
 
-class Bool(forms.Form):
-    bool = forms.BooleanField(initial=True)

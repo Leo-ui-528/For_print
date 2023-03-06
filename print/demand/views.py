@@ -15,21 +15,19 @@ class UploadView(CreateView):
         return context
 
 
-def will_be(request):
-    will = Upload.objects.order_by('upload_date')
+def will_be(request, **kwargs):
+    will = Upload.objects.filter(bool=False)
     return render(request, 'demand/will_be.html', {'will': will})
 
 
-def ended(request):
+def ended(request, **kwargs):
     end = Upload.objects.filter(bool=True)
     return render(request, 'demand/ended.html', {'end': end})
 
 
-
-
-
-
-
-
+def update(request):
+    if request.method == 'POST':
+        doc = Upload.objects.filter(bool=False).update(bool=True)
+        return render(request, 'demand/will_be.html', {'doc': doc})
 
 
