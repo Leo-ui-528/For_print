@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from demand.models import Upload
+from django.dispatch import receiver
+from django.contrib import messages
 
 
 class UploadView(CreateView):
@@ -28,6 +30,8 @@ def ended(request, **kwargs):
 def update(request):
     if request.method == 'POST':
         doc = Upload.objects.filter(bool=False).update(bool=True)
+        messages.add_message(request, messages.INFO, 'Выполнен документ №')
         return render(request, 'demand/will_be.html', {'doc': doc})
+
 
 

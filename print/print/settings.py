@@ -74,6 +74,9 @@ TEMPLATES = [
     },
 ]
 
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+
 WSGI_APPLICATION = 'print.wsgi.application'
 
 
