@@ -3,50 +3,58 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>Печать Глав АПУ</title>
+    <meta charset="utf-8">
+    <title>Печать Глав АПУ</title>
 
-  <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
 </head>
 
 <body>
-  <div id="main">
+<div id="main">
     <div id="header">
-      <div id="logo">
-        <div id="logo_text">
-          <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1>Напечатано</h1>
+        <div id="logo">
+            <div id="logo_text">
+                <!-- class="logo_colour", allows you to change the colour of the text -->
+                <h1>Напечатано</h1>
+            </div>
         </div>
-      </div>
-      <div id="menubar">
-        <ul id="menu">
-          <li><a href="{% url 'fileupload' %}">Загрузить документ</a></li>
-          <li><a href="{% url 'will_be' %}">На печать</a></li>
-          <li class="selected"><a href="{% url 'ended'%}">Напечатано</a></li>
-
-        </ul>
-      </div>
+        <div id="menubar">
+            <ul id="menu">
+                <li><a href="{% url 'fileupload' %}">Загрузить документ</a></li>
+                <li><a href="{% url 'will_be' %}">На печать</a></li>
+                <li class="selected"><a href="{% url 'ended'%}">Напечатано</a></li>
+                {% if user.is_authenticated %}
+<!--                <li><a href="{% url 'edit'%}">{{user.first_name|default:'Пользователь'}}</a></li>-->
+                <li><a href="{% url 'logout'%}">Выйти</a></li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login'%}">Войти</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
     <div id="content_header"></div>
-<!--    <div id="site_content">-->
-<div style="padding:40px;margin:40px;border:1px solid #ccc">
-    <ul>
+    <!--    <div id="site_content">-->
+    <div style="padding:40px;margin:40px;border:1px solid #ccc">
+        <ul>
 
-    {% for document in end %}
+            {% for document in end %}
 
-        <li>
-            №: {{ document.id }} <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
-            <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}
-                 Тип бумаги: {{ document.type_paper}} Формат печати: {{document.print_format}} Фальцевание:
-            {{document.folding}} Количество копий: {{document.number_of_instances}} Телефон: {{document.phone}}  </small>
-        </li>
+            <li>
+                №: {{ document.id }} <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
+                <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}
+                    Тип бумаги: {{ document.type_paper}} Формат печати: {{document.print_format}} Фальцевание:
+                    {{document.folding}} Количество копий: {{document.number_of_instances}} Телефон:
+                    {{document.phone}} </small>
+            </li>
 
-    {% endfor %}
+            {% endfor %}
 
-    </ul>
+        </ul>
     </div>
 
-        </div>
-  </div>
+</div>
+</div>
 </body>
 </html>

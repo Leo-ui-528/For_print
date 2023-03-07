@@ -4,6 +4,8 @@ from django.urls import reverse_lazy
 from demand.models import Upload
 from django.dispatch import receiver
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect
 
 
 class UploadView(CreateView):
@@ -17,11 +19,13 @@ class UploadView(CreateView):
         return context
 
 
+@login_required
 def will_be(request, **kwargs):
     will = Upload.objects.filter(bool=False)
     return render(request, 'demand/will_be.html', {'will': will})
 
 
+@login_required
 def ended(request, **kwargs):
     end = Upload.objects.filter(bool=True)
     return render(request, 'demand/ended.html', {'end': end})
@@ -32,6 +36,3 @@ def update(request):
         doc = Upload.objects.filter(bool=False).update(bool=True)
         messages.add_message(request, messages.INFO, 'Выполнен документ №')
         return render(request, 'demand/will_be.html', {'doc': doc})
-
-
-
