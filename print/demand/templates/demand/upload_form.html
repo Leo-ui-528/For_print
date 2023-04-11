@@ -1,5 +1,4 @@
 {% load static %}
-{% load widget_tweaks %}
 <!DOCTYPE html>
 <html>
 
@@ -59,7 +58,8 @@
             <li>
                 №: {{ document.id }}
                 <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
-                <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}
+                <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}<br>
+                    <a href="{{ document.file }}">{{ document.file.name }}</a>
                     <br> Тип бумаги: {{document.type_paper}}<br> Формат печати: {{document.print_format}}<br>
                     Фальцевание:
                     {{document.folding}}<br> Количество копий: {{document.number_of_instances}}<br> Телефон:

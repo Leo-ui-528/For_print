@@ -10,7 +10,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 class UploadView(CreateView):
     model = Upload
-    fields = ['print_format', 'type_paper', 'folding', 'number_of_instances', 'phone', 'upload_file']
+    fields = ['print_format', 'type_paper', 'folding', 'number_of_instances', 'phone', 'upload_file', 'file']
     success_url = reverse_lazy('fileupload')
 
     def get_context_data(self, **kwargs):
@@ -34,5 +34,5 @@ def ended(request, **kwargs):
 def update(request):
     if request.method == 'POST':
         doc = Upload.objects.filter(bool=False).update(bool=True)
-        messages.add_message(request, messages.INFO, 'Выполнен документ №')
+        messages.add_message(request, messages.INFO, 'Выполнен документ')
         return render(request, 'demand/will_be.html', {'doc': doc})
