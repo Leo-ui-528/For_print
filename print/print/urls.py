@@ -22,15 +22,19 @@ from django.conf.urls.static import static
 from authapp import views as authapp
 from demand.views import UploadView
 
+
 app_name = 'authapp'
 
 urlpatterns = [
     path('will_be/', will_be, name='will_be'),
     path('ended/', ended, name='ended'),
     path('admin/', admin.site.urls),
-    path('fileupload/', UploadView.as_view(), name='fileupload'),
-    path('', authapp.login, name='login'),
+    path('', UploadView.as_view(), name='fileupload'),
+    # path('file/', UploadView.as_view(), name='file'),
+    path('login/', authapp.login, name='login'),
     path('logout/', authapp.logout, name='logout'),
+
+    path('register/', authapp.register, name='register'),
     path('edit/', authapp.edit, name='edit'),
     path('update/', update, name='update')
 

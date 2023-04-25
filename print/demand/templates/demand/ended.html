@@ -35,6 +35,7 @@
         </div>
     </div>
     <div id="content_header"></div>
+    {% if user.is_authenticated %}
     <!--    <div id="site_content">-->
     <div style="padding:40px;margin:40px;border:1px solid #ccc">
         <ul>
@@ -50,6 +51,7 @@
             </li>
 
             {% endfor %}
+            {% endif %}
 
         </ul>
     </div>

@@ -13,12 +13,13 @@
 <div id="main">
     <div id="header">
         <div id="logo">
+
             <div id="logo_text">
                 <!-- class="logo_colour", allows you to change the colour of the text -->
-                <h1>На печать</h1>
+                <h1> Печать в печатном центре </h1>
+                <img src="static/img/image.png" alt="альтернативный текст" width="90" height="90">
             </div>
         </div>
-
         <div id="menubar">
             <ul id="menu">
                 <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
@@ -28,7 +29,8 @@
 
 
                 {% if user.is_authenticated %}
-<!--                <li><a href="{% url 'edit'%}">{{user.first_name|default:'Пользователь'}}</a></li>-->
+                <li><a href="{% url 'edit'%}">{{user.first_name|default:'Пользователь'}}</a></li>
+                -->
                 <li><a href="{% url 'logout'%}">Выйти</a></li>
                 {% else %}
                 <li>
@@ -42,7 +44,8 @@
     <ul class="messages">
         {% for message in messages %}
         <li
-        {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+        </li>
         {% endfor %}
     </ul>
     {% endif %}
@@ -50,10 +53,12 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Отправить</button>
+
+                <button type="submit">Отправить</button>
         </form>
         <hr>
         <ul>
+
             {% for document in documents %}
             <li>
                 №: {{ document.id }}

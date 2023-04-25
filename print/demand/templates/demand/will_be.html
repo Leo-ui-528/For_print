@@ -23,7 +23,7 @@
                 <li class="selected"><a href="{% url 'will_be' %}">На печать</a></li>
                 <li><a href="{% url 'ended'%}">Напечатано</a></li>
                 {% if user.is_authenticated %}
-<!--                <li><a href="{% url 'edit'%}">{{user.first_name|default:'Пользователь'}}</a></li>-->
+                <li><a href="{% url 'edit'%}">{{user.first_name|default:'Пользователь'}}</a></li>-->
                 <li><a href="{% url 'logout'%}">Выйти</a></li>
                 {% else %}
                 <li>
@@ -34,6 +34,7 @@
         </div>
     </div>
     <div id="content_header"></div>
+    {% if user.is_authenticated %}
 
     <div style="padding:40px;margin:40px;border:1px solid #ccc">
         <ul>
@@ -44,7 +45,7 @@
                 №: {{ document.id }} <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
                 <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}
                     Тип бумаги: {{ document.type_paper}} Формат печати: {{document.print_format}} Фальцевание:
-                    {{document.folding}} Количество копий: {{document.number_of_instances}} Телефон: {{document.phone}}
+                    {{document.folding}} Количество копий: {{document.number_of_instances}} Телефон: {{document.phone}}</small>
                     <form action="{% url 'update' %}" method=POST>
                         {% csrf_token %}
                         <button type="submit">Выполнено</button>
@@ -54,6 +55,7 @@
 
             </li>
             {% endfor %}
+            {% endif %}
         </ul>
     </div>
 

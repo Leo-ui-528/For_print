@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import PrintUser
 
-# Register your models here.
+admin.site.register(PrintUser)
+
+
