@@ -6,7 +6,7 @@ from django import forms
 class PrintUserLoginForm(AuthenticationForm):
     class Meta:
         model = PrintUser
-        fields = ('username', 'password')
+        fields = ('username', 'password',)
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)

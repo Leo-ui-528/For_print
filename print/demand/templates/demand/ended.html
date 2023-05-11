@@ -1,43 +1,7 @@
+{% extends 'demand/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>Печать Глав АПУ</title>
-
-    <link rel="stylesheet" href="{% static 'style.css' %}"/>
-</head>
-
-<body>
-<div id="main">
-    <div id="header">
-        <div id="logo">
-            <div id="logo_text">
-                <!-- class="logo_colour", allows you to change the colour of the text -->
-                <h1>Напечатано</h1>
-            </div>
-        </div>
-        <div id="menubar">
-            <ul id="menu">
-                <li><a href="{% url 'fileupload' %}">Загрузить документ</a></li>
-                <li><a href="{% url 'will_be' %}">На печать</a></li>
-                <li class="selected"><a href="{% url 'ended'%}">Напечатано</a></li>
-                {% if user.is_authenticated %}
-<!--                <li><a href="{% url 'edit'%}">{{user.first_name|default:'Пользователь'}}</a></li>-->
-                <li><a href="{% url 'logout'%}">Выйти</a></li>
-                {% else %}
-                <li>
-                    <a href="{% url 'login'%}">Войти</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-    <div id="content_header"></div>
-    {% if user.is_authenticated %}
-    <!--    <div id="site_content">-->
-    <div style="padding:40px;margin:40px;border:1px solid #ccc">
+{% block content %}
+<div style="padding:40px;margin:40px">
         <ul>
 
             {% for document in end %}
@@ -51,12 +15,7 @@
             </li>
 
             {% endfor %}
-            {% endif %}
 
         </ul>
     </div>
-
-</div>
-</div>
-</body>
-</html>
+{% endblock %}

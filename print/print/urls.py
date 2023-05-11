@@ -21,6 +21,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from authapp import views as authapp
 from demand.views import UploadView
+from django.contrib.auth.views import LoginView
+
 
 
 app_name = 'authapp'
@@ -33,7 +35,6 @@ urlpatterns = [
     # path('file/', UploadView.as_view(), name='file'),
     path('login/', authapp.login, name='login'),
     path('logout/', authapp.logout, name='logout'),
-
     path('register/', authapp.register, name='register'),
     path('edit/', authapp.edit, name='edit'),
     path('update/', update, name='update')
