@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        .myfield{
+            border:1px solid #ccc;
+            border-radius:5px;
+            height:25px;
+            width:50px;
+            margin: 10px 10px 10px 0;
+            }
+        .phone{
+            border:1px solid #ccc;
+            border-radius:5px;
+            height:25px;
+            width:130px;
+            margin: 10px 10px 10px 0;
+        }
+        .id_folding.folding{
+        margin-bottom:5px;
+        color: 60606;
+
+
+        }
+
+
+
+
+    </style>
+    <title>Печать</title>
+    <!-- META TAGS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <meta name="author" content="Amine Akhouad">
+    <meta name="description" content="AKAD is a creative and modern template for digital agencies">
+
+    <!-- STYLES -->
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flexslider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animsition.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css'%}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body class="animsition">
+<!-- HEADER  -->
+<header class="main-header">
+    <div class="container">
+        {% block logo %}
+        <div class="logo">
+            <img src="static/img/logo.jpg" alt="logo"></a>
+        </div>
+        {% endblock %}
+        <div class="menu">
+            <!-- desktop navbar -->
+
+            <nav class="desktop-nav">
+                <ul class="first-level">
+                    <li><a href="{% url 'fileupload' %}" class="animsition-link">Загрузить документ</a></li>
+                    <li><a href="{% url 'will_be'%}" class="animsition-link">На печать</a></li>
+                    <li><a href="{% url 'ended' %}" class="animsition-link">Завершено</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'edit'%}">{{user.first_name|default:'Пользователь'}}</a></li>
+                    <li><a href="{% url 'logout'%}">Выйти</a></li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login'%}">Войти</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+
+        </div>
+
+        {% block content %}
+        <div style="padding:40px;margin:40px;">
+
+            <form method="post"  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+
+                <button type="submit">Отправить</button>
+            </form>
+            </span>
+            <hr>
+            <ul>
+
+                {% for document in documents %}
+                <li>
+                    №: {{ document.id }}
+                    <a href="{{ document.upload_file.url }}">{{ document.upload_file.name }}</a>
+                    <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}<br>
+                        <a href="{{ document.file }}">{{ document.file.name }}</a>
+                        <br> Тип бумаги: {{document.type_paper}}<br> Формат печати:
+                        {{document.print_format}}<br>
+                        Фальцевание:
+                        {{document.folding}}<br> Количество копий: {{document.number_of_instances}}<br> Телефон:
+                        {{document.phone}}</small>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+    </div>
+    {% endblock %}
+
+    <!-- SCRIPTS -->
+    <script src="{% static 'js/jquery-2.1.4.min.js'%}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js'%}"></script>
+    <script src="{% static 'js/jquery.flexslider.js'%}"></script>
+    <script src="{% static 'js/smoothScroll.js'%}"></script>
+    <script src="{% static 'js/jquery.animsition.min.js'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+
+    <script type="text/javascript" charset="utf-8">
+		$(window).load(function() {
+			new WOW().init();
+
+			// initialise flexslider
+			$('.site-hero').flexslider({
+				animation: "fade",
+				directionNav: false,
+				controlNav: false,
+				keyboardNav: true,
+				slideToStart: 0,
+				animationLoop: true,
+				pauseOnHover: false,
+				slideshowSpeed: 4000,
+			});
+
+
+			// initialize isotope
+			var $container = $('.portfolio_container');
+			$container.isotope({
+				filter: '*',
+			});
+
+			$('.portfolio_filter a').click(function(){
+				$('.portfolio_filter .active').removeClass('active');
+				$(this).addClass('active');
+
+				var selector = $(this).attr('data-filter');
+				$container.isotope({
+					filter: selector,
+					animationOptions: {
+						duration: 500,
+						animationEngine : "jquery"
+					}
+				});
+				return false;
+			});
+		});
+
+
+
+
+    </script>
+</header>
+</body>
+</html>
