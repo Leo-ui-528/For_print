@@ -37,6 +37,6 @@ urlpatterns = [
     path('logout/', authapp.logout, name='logout'),
     path('register/', authapp.register, name='register'),
     path('edit/', authapp.edit, name='edit'),
-    path('update/', update, name='update')
+    path('update//', update, name='update')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

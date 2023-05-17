@@ -1,40 +1,39 @@
 {% extends 'demand/base.html' %}
 {% load static %}
 
-        {% block content %}
+{% block content %}
 
-            <div class="section-title">
+<div>
 
-                {% if user.is_authenticated %}
+    {% if user.is_authenticated %}
 
-                <div style="padding:40px;margin:40px">
-                    <ul>
-                        {% for document in will %}
+    <div style="padding:40px;margin:40px">
+        <ul>
+            {% for document in will %}
 
-                        <li>
+            <li>
 
-                            №: {{ document.id }} <a href="{{ document.upload_file.url }}">{{ document.upload_file.name
-                            }}</a>
-                            <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}
-                                Тип бумаги: {{ document.type_paper}} Формат печати: {{document.print_format}}
-                                Фальцевание:
-                                {{document.folding}} Количество копий: {{document.number_of_instances}} Телефон:
-                                {{document.phone}}</small>
-                            <form action="{% url 'update' %}" method=POST>
-                                {% csrf_token %}
-                                <button type="submit">Выполнено</button>
-                            </form>
-                            </small>
+                №: {{ document.id }} <a href="{{ document.upload_file.url }}">{{ document.upload_file.name}}</a>
+                <small>({{ document.upload_file.size|filesizeformat }}) - {{document.upload_date}}
+                    Тип бумаги: {{ document.type_paper}} Формат печати: {{document.print_format}}
+                    Фальцевание:
+                    {{document.folding}} Количество копий: {{document.number_of_instances}} Телефон:
+                    {{document.phone}}</small>
+                <form action="{% url 'update' %}" method=POST>
+                    {% csrf_token %}
+                    <button type="submit">Выполнено</button>
+                </form>
+                </small>
 
 
-                        </li>
-                        {% endfor %}
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
+            </li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+</div>
 
-        {% endblock %}
+{% endblock %}
 
 
 

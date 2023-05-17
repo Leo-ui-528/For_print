@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
 from django import forms
+from django.forms.widgets import ClearableFileInput
 from django_currentuser.middleware import (get_current_user, get_current_authenticated_user)
 
 
@@ -40,11 +41,11 @@ class UploadView(CreateView):
 
     def get_form(self, form_class=None, **kwargs):
         form = super(UploadView, self).get_form(form_class)
-        form.fields['folding'].widget = forms.RadioSelect(attrs={'name': 'rating'}, choices=FOLDING)
+        form.fields['folding'].widget = forms.RadioSelect(attrs={"class": "folding"}, choices=FOLDING)
         form.fields['print_format'].widget = forms.RadioSelect(attrs={'name': 'rating'}, choices=FORMAT)
         form.fields['type_paper'].widget = forms.RadioSelect(attrs={'name': 'rating'}, choices=TYPE)
         form.fields['upload_file'].widget = forms.ClearableFileInput(attrs={'multiple': True})
-        form.fields['number_of_instances'].widget=forms.NumberInput(attrs={"class": "myfield"})
+        form.fields['number_of_instances'].widget = forms.NumberInput(attrs={"class": "myfield"})
         form.fields['phone'].widget = forms.NumberInput(attrs={"class": "phone"})
         return form
 
